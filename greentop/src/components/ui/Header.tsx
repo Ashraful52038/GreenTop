@@ -7,14 +7,21 @@ import Link from "next/link";
 
 function Header() {
     const {user}= useUser();
-    const createClerkPasskey=async()=>{};
+    const createClerkPasskey=async()=>{
+        try {
+            const response = await user?.createPasskey();
+            console.log(response);
+        } catch (err) {
+            console.error("Error:",JSON.stringify(err,null, 2));
+        }
+    };
 
     console.log(user);
 
   return (
     <header className="flex flex-wrap justify-between items-center px-4 py-2">
         {/* Top Row */}
-        <div>
+        <div className="flex w-full flex-wrap justify-between items-center">
         <Link 
         href="/"
         className="
@@ -47,7 +54,7 @@ function Header() {
             max-w-4xl" 
             />
         </Form>
-        <div>
+        <div className="flex items-center space-x-4 mt-4 sm:mt-0 flex-1 sm:flex-none">
             <Link href="/basket"
             className="flex-1 relative flex justify-center sm:justify-start sm:flex-none 
             items-center space-x-2 bg-blue-500 hover:bg-blue-700
@@ -90,7 +97,7 @@ function Header() {
                     animate-pulse text-blue-500 font-bold py-2 px-4 rounded 
                     border-blue-300 border"
                     >
-                        Create a passkey now
+                        Create passkey
                     </button>
                 )}
 

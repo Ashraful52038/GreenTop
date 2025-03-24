@@ -1,19 +1,22 @@
-/**
- * This route is responsible for the built-in authoring environment using Sanity Studio.
- * All routes under your studio path is handled by this file using Next.js' catch-all routes:
- * https://nextjs.org/docs/routing/dynamic-routes#catch-all-routes
- *
- * You can learn more about the next-sanity package here:
- * https://github.com/sanity-io/next-sanity
- */
+'use client';
 
-import { NextStudio } from 'next-sanity/studio'
-import config from '../../../sanity.config'
+import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
+import config from '@/sanity.config';
 
-export const dynamic = 'force-static'
-
-export { metadata, viewport } from 'next-sanity/studio'
+// ✅ Fix: Ensure we're importing `NextStudio`, not `default`
+const NextStudio = dynamic(() => import('next-sanity/studio').then((mod) => mod.NextStudio), { ssr: false });
 
 export default function StudioPage() {
-  return <NextStudio config={config} />
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null; // Optionally render a loading state
+  }
+
+  return <NextStudio config={config} />;
 }
