@@ -22,6 +22,7 @@
       "@/*": ["./src/*"],
       "@/sanity.config": ["./sanity.config.ts"] // Add alias to sanity.config
     },
+    "allowSyntheticDefaultImports": true,
     "allowImportingTsExtensions": true,
     "plugins": [
       {

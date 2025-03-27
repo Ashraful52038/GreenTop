@@ -1,6 +1,4 @@
 import { Icon, TrolleyIcon } from "@sanity/icons";
-import { Rule } from "postcss";
-import { title } from "process";
 import { defineField, defineType } from "sanity";
 
 export const productType = defineType({

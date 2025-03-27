@@ -27,12 +27,12 @@ function Header() {
         className="
         text-2xl
         font-bold
-        text-blue-500
+        text-green-500
         hover:opacity-50
         cursor-pointer
         mix-auto 
         sm:mx-0">
-            Shopr
+            GreenTop
         </Link>
         <Form 
         action='/search'
@@ -47,7 +47,7 @@ function Header() {
             rounded
             focus:outline-none
             focus:ring-2
-            focus:ring-blue-500
+            focus:ring-green-500
             focus:ring-opacity-50
             border
             w-full
@@ -57,7 +57,7 @@ function Header() {
         <div className="flex items-center space-x-4 mt-4 sm:mt-0 flex-1 sm:flex-none">
             <Link href="/basket"
             className="flex-1 relative flex justify-center sm:justify-start sm:flex-none 
-            items-center space-x-2 bg-blue-500 hover:bg-blue-700
+            items-center space-x-2 bg-green-500 hover:bg-green-700
             text-white font-bold py-2 px-4 rounded">
                 <TrolleyIcon className="w-6 h-6"/>
                 {/* span item count once global state is implemented */}
@@ -69,7 +69,7 @@ function Header() {
                 <Link 
                     href="/orders"
                     className="flex-1 relative flex justify-center sm:justify-start
-                    sm:flex-none items-center space-x-2 bg-blue-500 hover:bg-blue-700
+                    sm:flex-none items-center space-x-2 bg-green-500 hover:bg-green-700
                      text-white font-bold py-2 px-4 rounded">
                         <PackageIcon className="w-6 h-6"/>
                         <span>My Orders</span>
@@ -93,9 +93,9 @@ function Header() {
                 {user?.passkeys.length===0 && (
                     <button
                     onClick={createClerkPasskey}
-                    className="bg-white hover:bg-blue-700 hover:text-white
-                    animate-pulse text-blue-500 font-bold py-2 px-4 rounded 
-                    border-blue-300 border"
+                    className="bg-white hover:bg-green-700 hover:text-white
+                    animate-pulse text-green-500 font-bold py-2 px-4 rounded 
+                    border-green-300 border"
                     >
                         Create passkey
                     </button>
