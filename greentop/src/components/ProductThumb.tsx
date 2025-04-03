@@ -48,6 +48,9 @@ function ProductThumb({product}: {product: Product}){
                 )
                 .join(" ") || "No description available"}
                 </p>
+                <p className="mt-2 text-lg font-bold text-gray-900">
+                    ৳{product.price?.toFixed(2)}
+                </p>
             </div>   
         </Link>
     );
