@@ -49,7 +49,7 @@ async function ProductPage({
                     <div className="text-xl font-semibold mb-4">
                     ৳{product.price?.toFixed(2)}
                     </div>
-                    <div>
+                    <div className="prose max-w-none mb-6">
                         {Array.isArray(product.description) && (
                             <PortableText value={product.description}/>
                         )}
