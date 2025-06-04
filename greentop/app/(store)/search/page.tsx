@@ -23,7 +23,7 @@ async function SearchPage({
                     </p>
                 </div>
             </div>
-        )
+        );
     }
 
 
@@ -36,7 +36,7 @@ async function SearchPage({
             <ProductsGrid products={products}/>
         </div>
     </div>
-  )
+  );
   
 }
 

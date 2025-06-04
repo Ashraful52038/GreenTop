@@ -6,7 +6,7 @@ import ProductThumb from "./ProductThumb";
 
 function ProductsGrid({products}:{products: Product[]}){
     return(
-        <div>
+        <div className="flex flex-col sm:flex-row flex-wrap gap-2">
             {products?.map((product)=>{
                 return(
                     <AnimatePresence key={product._id}>
