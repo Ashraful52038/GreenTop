@@ -1,7 +1,7 @@
 import BlackFridayBanner from "@/components/BlackFridayBanner";
-import ProductsView from "@/components/ProductsView";
-import { getAllCategories } from "sanity/lib/products/getAllCategories";
-import { getAllProducts } from "sanity/lib/products/getAllProduct";
+import ProductsView from "@/src/components/ProductsView";
+import { getAllCategories } from "@/sanity/lib/products/getAllCategories";
+import { getAllProducts } from "@/sanity/lib/products/getAllProduct";
 
 
 export default async function Home() {
@@ -17,4 +17,4 @@ export default async function Home() {
      </div>
     </div>
   );
-}
+} 

@@ -1,5 +1,5 @@
 "use client";
-
+import { CategorySelectorComponent } from "@/components/ui/category-selector";
 import { Category, Product } from "sanity.types";
 import ProductsGrid from "./ProductsGrid";
 

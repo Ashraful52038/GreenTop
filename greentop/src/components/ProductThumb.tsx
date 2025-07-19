@@ -1,4 +1,4 @@
-import { imageUrl } from "@/lib/imageUrl";
+import imageUrl from "@/lib/imageUrl"; 
 import Image from "next/image";
 import Link from "next/link";
 import { Product } from "sanity.types";

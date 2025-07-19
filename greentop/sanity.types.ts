@@ -35,7 +35,6 @@ export type Sale = {
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
     media?: unknown;
-    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
@@ -73,7 +72,6 @@ export type Sale = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
-    media?: unknown;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -158,7 +156,6 @@ export type BlockContent = Array<{
     _weak?: boolean;
     [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
   };
-  media?: unknown;
   media?: unknown;
   hotspot?: SanityImageHotspot;
   crop?: SanityImageCrop;

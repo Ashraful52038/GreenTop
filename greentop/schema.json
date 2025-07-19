@@ -1069,7 +1069,7 @@
           "value": {
             "type": "string"
           },
-          "optional": true
+          "optional": true,
             "value": "sanity.imagePaletteSwatch"
           }
         },
