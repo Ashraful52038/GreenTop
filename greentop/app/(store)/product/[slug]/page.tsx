@@ -1,13 +1,22 @@
-  
+
+ 
 import { getProductBySlug } from "@/sanity/lib/products/getProductBySlug";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "next-sanity";
 
+export const dynamic = "force-static";
+export const revalidate = 60; // Revalidate every 60 seconds
+
 async function ProductPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const product = await getProductBySlug(slug);
+
+  console.log(
+    crypto.randomUUID().slice(0, 5) +
+    `>>> Rerendered the product page for slug: ${slug}`
+  );
   if (!product) {
     return notFound();
   }

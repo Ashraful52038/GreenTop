@@ -8,7 +8,7 @@ export function formatCurrency(
             currency: currency.toUpperCase(),
         }).format(amount);
     } catch (error) {
-        console.error("Error formatting currency:", error);
-        return `${amount} ${currency.toUpperCase()} ${amount.toFixed(2)}`;
+        console.error("Invalid currency code:", currency, error);
+        return ` ${currency.toUpperCase()} ${amount.toFixed(2)}`;
     }
 }
