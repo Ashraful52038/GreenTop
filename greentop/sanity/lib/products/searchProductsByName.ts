@@ -14,7 +14,7 @@ export  const searchProductsByName = async (SearchParam: string)=>{
             const products = await sanityFetch({
                 query: PRODUCT_SEARCH_QUERY,
                 params: {
-                    searchParam: `${SearchParam}*`, //Append wildcard for partial match
+                    SearchParam: `${SearchParam}*`, //Append wildcard for partial match
                 },
             });
 

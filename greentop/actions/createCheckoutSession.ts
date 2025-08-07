@@ -1,5 +1,6 @@
-"use server";
-import { imageUrl } from "@/lib/langstrl";
+'use server'
+
+import imageUrl from "@/lib/imageUrl";
 import stripe from "@/lib/stripe";
 import { BasketItem } from "@/store/store";
 
