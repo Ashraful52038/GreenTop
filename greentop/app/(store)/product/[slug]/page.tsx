@@ -5,14 +5,17 @@ import imageUrl from "@/lib/imageUrl";
 import { getProductBySlug } from "@/sanity/lib/products/getProductBySlug";
 import AddToBasketButton from "@/components/AddToBasketButton";
 
-async function ProductPage({ params }: { params: { slug: string } }) {
+async function ProductPage( props :{ params: { slug: string } }| Promise<{ params: { slug: string } }>) {
+  const { params } = await props;
   const { slug } = params;
   const product = await getProductBySlug(slug);
 
   if (!product) {
     notFound();
-    return null;
   }
+
+  // ✅ Correct place to log:
+  console.log("Fetched product:", product);
 
   const isOutOfStock = product.stock != null && product.stock <= 0;
   return (
@@ -41,7 +44,7 @@ async function ProductPage({ params }: { params: { slug: string } }) {
           <div>
             <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
             <div className="text-xl font-semibold mb-4">
-              {product.price?.toFixed(2)}
+              {typeof product.price === "number" ? product.price.toFixed(2) : "N/A"}
             </div>
             <div className="prose max-w-none mb-6">
               {Array.isArray(product.description) && (

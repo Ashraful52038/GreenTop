@@ -576,3 +576,9 @@ declare module "@sanity/client" {
     "\n        *[\n            _type == \"sale\"\n            && isActive == true\n            &&  couponCode == $couponCode\n        ] | order(validFrom desc)[0]\n        ": ACTIVE_SALE_BY_COUPON_QUERYResult;
   }
 }
+
+// // Import the generated product type that can be null
+// import { PRODUCT_BY_ID_QUERYResult } from "@/sanity.types";
+
+// Create a new type alias `Product` which is PRODUCT_BY_ID_QUERYResult but not null
+export type Product = NonNullable<PRODUCT_BY_ID_QUERYResult>;

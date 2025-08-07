@@ -8,6 +8,7 @@ import imageUrl from "@/lib/imageUrl";
 import Image from "next/image";
 import AddToBasketButton from "@/components/AddToBasketButton";
 import Loader from "@/components/Loader";
+import { createCheckoutSession } from "@/actions/createCheckoutSession";
 
 
 export type Metadata={
