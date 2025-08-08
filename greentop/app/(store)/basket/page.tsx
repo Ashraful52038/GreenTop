@@ -127,10 +127,10 @@ function BasketPage() {
                                 {groupedItem.reduce((total,item)=> total + item.quantity,0)}
                             </span>
                         </p>
-                        <p className="flex justify-between text-2xl fond-bold border-t pt-2">
+                        <p className="flex justify-between text-2xl font-bold border-t pt-2">
                             <span>Total:</span>
-                            <span>
-                               {useBasketStore.getState().getTotalPrice().toFixed(2)} 
+                            <span >
+                               ৳{useBasketStore.getState().getTotalPrice().toFixed(2)} 
                             </span>
                         </p>
                     </div>

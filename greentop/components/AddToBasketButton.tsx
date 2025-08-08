@@ -51,9 +51,9 @@ function AddToBasketButton({ product, disabled }:AddToBasketButtonProps){
             -
         </span>
         </button>
-        <span className="w-8 text-center font-semibold">{isNaN(itemCount) ? 0 : itemCount}</span>
+        <span className="w-8 text-center font-semibold">{itemCount}</span>
         <button
-          onClick={() => addItem({ product, quantity: 1 })}
+          onClick={() => addItem(product)}
           className={`w-8 h-8 rounded-full flex items-center justify-center 
           transition-colors duration-200 
           ${disabled

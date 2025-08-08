@@ -2,7 +2,10 @@
 
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { useBasketStore } from "@/store/store";
+import useBasketStore from "../store";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+
 
 function SuccessPage() {
   const searchParams = useSearchParams();
@@ -11,7 +14,7 @@ function SuccessPage() {
 
   useEffect(() => {
     if (orderNumber) {
-      clearBasket();+
+      clearBasket();
     }
   }, [orderNumber, clearBasket]);
 
@@ -45,6 +48,20 @@ function SuccessPage() {
               <span className="font-mono text-sm">{sessionId}</span>
             </p>
           )} */}
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <p className="text-gray-600">
+          A confirmation email is sent to your registered email address
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button asChild className="bg-green-600 hover:bg-green-700">
+            <Link href="/orders" >View Order Details</Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link href="/">Continue Shopping</Link>
+          </Button>
         </div>
       </div>
     </div>

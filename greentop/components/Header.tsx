@@ -9,10 +9,9 @@ import Link from "next/link";
 function Header() {
     const {user}= useUser();
     const itemCount = useBasketStore((state)=>
-        (state.items ?? []).reduce(
-            (total, item)=> total+(item.quantity,0),0
-        )
-);
+        state.items.reduce((total, item)=> total+ item.quantity,0)
+    );
+
     const createClerkPasskey=async()=>{
         try {
             const response = await user?.createPasskey();
@@ -66,7 +65,7 @@ function Header() {
             items-center space-x-2 bg-green-500 hover:bg-green-700
             text-white font-bold py-2 px-4 rounded">
                 <TrolleyIcon className="w-6 h-6"/>
-                <span className="absolute -top-2 -right-2 big-red-500 text-white
+                <span className="absolute -top-2 -right-2 bg-purple-500 text-white
                 rounded-full w-5 h-5 flex items-center justify-center text-xs">
                     {itemCount}
                 </span>

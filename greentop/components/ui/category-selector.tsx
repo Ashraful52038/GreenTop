@@ -39,12 +39,12 @@ export function CategorySelectorComponent({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-full max-w-full relative flex justify-center sm:justify-start sm:flex-none items-center space-x-2 bg-blue-500 hover:bg-blue-700 hover:text-white text-white font-bold py-2 px-4 rounded"
+          className="w-full max-w-full relative flex justify-center sm:flex-none items-center space-x-2 bg-green-500 hover:bg-green-700 hover:text-white text-white font-bold py-2 px-4 rounded"
         >
           {value
             ? categories.find((category) => category._id === value)?.title
             : "Filter by Category"}
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-70" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-full p-0">
