@@ -5,9 +5,8 @@ import imageUrl from "@/lib/imageUrl";
 import { getProductBySlug } from "@/sanity/lib/products/getProductBySlug";
 import AddToBasketButton from "@/components/AddToBasketButton";
 
-async function ProductPage( props :{ params: { slug: string } }| Promise<{ params: { slug: string } }>) {
-  const { params } = await props;
-  const { slug } = params;
+async function ProductPage({ params }: { params:Promise <{slug: string;}>;}) {
+  const { slug } = await params;
   const product = await getProductBySlug(slug);
 
   if (!product) {

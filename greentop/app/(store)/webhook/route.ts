@@ -1,10 +1,11 @@
 import stripe from "@/lib/stripe";
-import { backendClinet } from "@/sanity/lib/backendClient";
+import { backendClient } from "@/sanity/lib/backendClient";
 
 
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
+import { Metadata } from "../basket/page";
 
 export async function POST(req: NextRequest) {
     const body = await req.text();
@@ -17,7 +18,7 @@ console.log("HIT WEBHOOK");
         return NextResponse.json({ error: "No signature" }, { status: 400 });
     }
     
-    const webbookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
     if( !webhookSecret){
         console.log(" Stripe webhook secret is not set");
@@ -32,7 +33,7 @@ console.log("HIT WEBHOOK");
             webhookSecret
         );
     } catch (err){
-        console.error("webhooj signature verification failed", err);
+        console.error("webhook signature verification failed", err);
         return NextResponse.json({ error:`webhook Error: ${err}` }, { status: 400 });
     }
 
@@ -78,7 +79,7 @@ async function createOrderinSanity(session: Stripe.Checkout.Session) {
         quantity: item.quantity || 0,
     }));
 
-    const order = await backendClinet.create({
+    const order = await backendClient.create({
         _type: "order",
         orderNumber,
         stripeCheckoutSessionId: id,

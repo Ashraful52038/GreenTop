@@ -1,6 +1,7 @@
 "use client";
 
-import { Category, Product } from "sanity.types";
+import { Category, Product } from "@/sanity.types";
+// import { Category, Product } from "sanity.types";
 import ProductsGrid from "./productGrid";
 
 interface ProductsViewProps{
