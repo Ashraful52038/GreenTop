@@ -1,4 +1,4 @@
-import { defineArrayMember, defineField,defineType } from "node_modules/sanity/lib/index.mjs";
+import { defineArrayMember, defineField, defineType } from "sanity";
 import { BasketIcon } from "@sanity/icons";
 
 export const orderType = defineType({
@@ -49,7 +49,7 @@ export const orderType = defineType({
             validation:(Rule)=> Rule.required(),
         }),
         defineField({
-            name:"prducts",
+            name:"products",
             title:"Products",
             type:"array",
             of:[
@@ -100,14 +100,14 @@ export const orderType = defineType({
             validation:(Rule)=> Rule.required(),
         }),
         defineField({
-            name:"amountDistance",
-            title:"Amount Distance",
+            name:"amountDiscount",
+            title:"Amount Discount",
             type:"number",
             validation:(Rule)=> Rule.min(0),
         }),
         defineField({
             name:"status",
-            title:"Order Stauts",
+            title:"Order Status",
             type:"string",
             options:{
                 list:[

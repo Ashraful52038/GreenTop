@@ -1,5 +1,6 @@
+import { defineType, defineField } from "sanity";
 import { TagIcon } from "@sanity/icons";
-import { defineType, defineField } from "node_modules/sanity/lib/index.mjs";
+
 
 export const salesType=defineType({
     name:"sale",

@@ -1,6 +1,6 @@
 import "server-only";
 import { defineLive } from "next-sanity";
-import { client } from "./client";
+import { client } from "@/sanity/lib/client";
 
 
 //set viewer token
@@ -15,5 +15,5 @@ export const { sanityFetch, SanityLive} = defineLive({
   browserToken: token,
   fetchOptions:{
     revalidate:0,
-  }
-})
+  },
+});
