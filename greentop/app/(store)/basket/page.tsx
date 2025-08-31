@@ -1,14 +1,14 @@
 "use client";
 
-import useBasketStore from "../store";
-import {useRouter } from "next/navigation";
-import {useState ,useEffect} from "react";
-import {SignInButton, useAuth,useUser} from "@clerk/nextjs";
-import imageUrl from "@/lib/imageUrl";
-import Image from "next/image";
+import { createCheckoutSession } from "@/actions/createCheckoutSession";
 import AddToBasketButton from "@/components/AddToBasketButton";
 import Loader from "@/components/Loader";
-import { createCheckoutSession } from "@/actions/createCheckoutSession";
+import imageUrl from "@/lib/imageUrl";
+import { SignInButton, useAuth, useUser } from "@clerk/nextjs";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import useBasketStore from "../store";
 
 export type Metadata={
     orderNumber:string;
@@ -24,7 +24,7 @@ function BasketPage() {
     const router=useRouter();
      
     const [isClient,setIsClient]=useState(false);
-    const [loadingButton, setLoadingButton] = useState<null | "stripe" | "bkash">(null);
+    const [loadingButton, setLoadingButton] = useState<null | "stripe" | "sslcommerz">(null);
 
      // 🟢 Stripe Checkout
     const handleCheckout =async () =>{
@@ -51,33 +51,34 @@ function BasketPage() {
         }
     };
 
-    // 🟢 bKash Checkout
-    const handleBkashCheckout = async () => {
-        if (!isSignedIn) return;
-        setLoadingButton("bkash");
+    // 🟢 SSLCommerz Checkout
+    const handleSSLCheckout = async () => {
+        if (!isSignedIn || !user) return;
+        setLoadingButton("sslcommerz");
 
         try {
-        const res = await fetch("/api/payment/bkash", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-            name: user?.fullName ?? "Unknown",
-            email: user?.emailAddresses[0].emailAddress ?? "unknown@example.com",
-            phone: "01700000000", // ⚡ you can replace with real user phone
-            }),
-        });
+            const res = await fetch("/api/payment/sslcommerz", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: user.fullName ?? "Unknown",
+                    email: user.emailAddresses?.[0]?.emailAddress ?? "unknown@example.com",
+                    phone: "01700000000", // replace with real user phone if available
+                    amount: useBasketStore.getState().getTotalPrice().toFixed(2),
+                }),
+            });
 
-        const data = await res.json();
+            const data = await res.json();
 
-        if (data.bkashURL) {
-            window.location.href = data.bkashURL; // redirect user to bKash gateway
-        } else {
-            console.error("❌ bKash redirect URL missing:", data);
-        }
+            if (data.sslcommerzURL) {
+                window.location.href = data.sslcommerzURL; // redirect user to SSLCommerz
+            } else {
+                console.error("❌ SSLCommerz redirect URL missing:", data);
+            }
         } catch (error) {
-        console.error("Error creating bKash session", error);
+            console.error("Error creating SSLCommerz session", error);
         } finally {
-        setLoadingButton(null);
+            setLoadingButton(null);
         }
     };
 
@@ -107,7 +108,7 @@ function BasketPage() {
                         <div key={item.product._id} className="mb-4 p-4 border rounded flex items-center justify-between">
                             <div className="flex items-center cursor-pointer min-w-0"
                             onClick={() => router.push(`/product/${item.product.slug?.current}`)}>
-                                <div className="w-28 h-28 sm:w-24 sm:w-24 flex-shrink-0 mr-4">
+                                <div className="w-28 h-28 sm:w-24 flex-shrink-0 mr-4">
                                     {item.product.image && (
                                         <Image
                                         src ={imageUrl(item.product.image).url()}
@@ -158,16 +159,15 @@ function BasketPage() {
                         >
                         {loadingButton ==="stripe" ? "Processing..." : "Pay with Stripe"}
                         </button>
-
                         <button
-                        onClick={handleBkashCheckout}
+                        onClick={handleSSLCheckout}
                         disabled={loadingButton !== null}
-                        className={`mt-4 w-full bg-green-600 text-white px-4 py-2 rounded hover:opacity-90 
-                            ${loadingButton === "bkash" 
+                        className={`mt-4 w-full bg-orange-600 text-white px-4 py-2 rounded hover:opacity-90 
+                            ${loadingButton === "sslcommerz"
                             ? "bg-gray-400 text-gray-700" 
-                            : "bg-green-600 text-white hover:bg-green-700"}`}
+                            : "bg-orange-600 text-white hover:bg-orange-700"}`}
                         >
-                        {loadingButton === "bkash" ? "Processing..." : "Pay with Bkash"}
+                        {loadingButton === "sslcommerz" ? "Processing..." : "Pay with SSLCommerz"}
                         </button>
                         </>
                     ) :(
