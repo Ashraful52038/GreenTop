@@ -1,6 +1,6 @@
 export const COUPON_CODES={
-    BFRIDAY: "BFRIDAY",
-    XMAS2021: "XMAS2021",
+    BRIKKHOROPON: "JULY_20",
+    XMAS2021: "XMAS",
     NY2022: "NY2022",
 } as const;
 

@@ -1,7 +1,8 @@
-import imageUrl  from "@/lib/imageUrl"
+import imageUrl from "@/lib/imageUrl";
+import { Product } from "@/sanity.types";
+import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
-import { Product } from "sanity.types";
 
 interface Block {
   _type: string;
@@ -44,15 +45,14 @@ function ProductThumb({product}: {product: Product}){
                     {product.name}
                 </h2>
 
-                <p>
-                    {product.description
-                    ?.map((block : Block)=>
-                      block._type === "block"
-                      ? block.children?.map((child)=>child.text).join("")
-                    : ""
-                )
-                .join(" ") || "No description available"}
-                </p>
+                <div className="prose">
+                {product.description
+                    ?(
+                        <PortableText value={product.description} />
+                    ):(
+                        "No description available"
+                    )}
+                </div>
                 <p className="mt-2 text-lg font-bold text-gray-900">
                     ৳{product.price?.toFixed(2)}
                 </p>

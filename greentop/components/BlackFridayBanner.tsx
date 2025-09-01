@@ -2,7 +2,7 @@ import { COUPON_CODES } from "@/sanity/lib/sales/couponCodes";
 import { getActiveSaleByCouponCode } from "@/sanity/lib/sales/getActiveSaleByCouponCode";
 
 async function BlackFridayBanner() {
-  const sale = await getActiveSaleByCouponCode(COUPON_CODES.BFRIDAY);
+  const sale = await getActiveSaleByCouponCode(COUPON_CODES.BRIKKHOROPON);
 
   if (!sale?.isActive) {
     return null;
@@ -28,7 +28,7 @@ async function BlackFridayBanner() {
             >
               <span className="font-bold text-base sm:text-xl">
                 Use code:{" "}
-                <span className="text-[#C0FF33]">{sale.couponCode}</span>
+                <span className="text-[#932305]">{sale.couponCode}</span>
               </span>
               <span className="ml-2 font-bold text-base sm:text-xl">
                 for {sale.discountAmount}% OFF
