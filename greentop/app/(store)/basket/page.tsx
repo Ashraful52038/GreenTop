@@ -55,32 +55,32 @@ function BasketPage() {
     const handleSSLCheckout = async () => {
         if (!isSignedIn || !user) return;
         setLoadingButton("sslcommerz");
-
+      
         try {
-            const res = await fetch("/api/payment/sslcommerz", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    name: user.fullName ?? "Unknown",
-                    email: user.emailAddresses?.[0]?.emailAddress ?? "unknown@example.com",
-                    phone: "01700000000", // replace with real user phone if available
-                    amount: useBasketStore.getState().getTotalPrice().toFixed(2),
-                }),
-            });
-
-            const data = await res.json();
-
-            if (data.sslcommerzURL) {
-                window.location.href = data.sslcommerzURL; // redirect user to SSLCommerz
-            } else {
-                console.error("❌ SSLCommerz redirect URL missing:", data);
-            }
-        } catch (error) {
-            console.error("Error creating SSLCommerz session", error);
+          const res = await fetch("http://localhost:5000/order", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: `${user.firstName || ""} ${user.lastName || ""}`.trim() || "Unknown",
+              email: user.emailAddresses?.[0]?.emailAddress ?? "unknown@example.com",
+              phone: "01700000000",
+              amount: useBasketStore.getState().getTotalPrice().toFixed(2),
+            }),
+            redirect: "manual" // optional
+          });
+      
+          const data = await res.json();
+          console.log("Response Data: ",data);
+          if (data.url) window.location.href = data.url;
+          else console.error("SSLCommerz URL missing", data);
+      
+        } catch (err) {
+          console.error("SSLCommerz error", err);
         } finally {
-            setLoadingButton(null);
+          setLoadingButton(null);
         }
-    };
+      };
+      
 
 
     // wait for client to mount

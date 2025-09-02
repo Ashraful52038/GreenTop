@@ -4,10 +4,10 @@ import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
 
-interface Block {
-  _type: string;
-  children?: { text: string }[];
-}
+// interface Block {
+//   _type: string;
+//   children?: { text: string }[];
+// }
 
 function ProductThumb({product}: {product: Product}){
     const isOutOfStock = product.stock != null && product.stock <=0;
